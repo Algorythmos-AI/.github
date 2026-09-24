@@ -1,0 +1,50 @@
+name: Security (reusable)
+
+# Shared secret scan + optional Semgrep for Algorythmos repositories. Call it from a repo's own
+# .github/workflows/security.yml:
+#
+#   jobs:
+#     security:
+#       uses: Algorythmos-AI/.github/.github/workflows/security.yml@main
+#       with: { semgrep: true }
+#
+# The check then reports as "security / Secret scan". If a ruleset requires the old check name,
+# update the required check in the same change, or every PR will wait for a check that never runs.
+# Gitleaks scans the checked-out tree (history is covered by GitHub secret scanning); reviewed false
+# positives go in the caller's .gitleaksignore, each with a reason.
+
+on:
+  workflow_call:
+    inputs:
+      semgrep:
+        description: Run Semgrep JS/TS rules. Set false for repositories without JavaScript or TypeScript.
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+jobs:
+  gitleaks:
+    name: Secret scan
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: gitleaks over the checked-out tree
+        uses: docker://ghcr.io/gitleaks/gitleaks:v8.30.1
+        with:
+          args: dir . --no-banner --redact --exit-code 1
+
+  semgrep:
+    name: Static security analysis
+    if: inputs.semgrep
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    container: semgrep/semgrep:1.172.0
+    steps:
+      - uses: actions/checkout@v4
+      - name: Semgrep (fails on ERROR severity)
+        run: semgrep scan --config p/javascript --config p/typescript --severity ERROR --error
+      - name: Semgrep report-only pass (warnings, non-blocking)
+        run: semgrep scan --config p/javascript --config p/typescript || true

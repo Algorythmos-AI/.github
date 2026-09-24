@@ -1,0 +1,23 @@
+# Copy to .github/dependabot.yml in a repository and delete the ecosystems it doesn't use.
+# Set target-branch to the repository's default branch: `integration` for staged-release repos,
+# `main` for trunk repos. Minor and patch updates are grouped into one weekly PR.
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    target-branch: integration
+    schedule: { interval: weekly, day: monday, timezone: Australia/Sydney }
+    open-pull-requests-limit: 5
+    groups:
+      minor-and-patch: { update-types: [minor, patch] }
+  - package-ecosystem: pip
+    directory: /
+    target-branch: integration
+    schedule: { interval: weekly, day: monday, timezone: Australia/Sydney }
+    open-pull-requests-limit: 5
+    groups:
+      minor-and-patch: { update-types: [minor, patch] }
+  - package-ecosystem: github-actions
+    directory: /
+    target-branch: integration
+    schedule: { interval: monthly }

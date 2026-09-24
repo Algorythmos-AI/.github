@@ -1,0 +1,12 @@
+[
+  { "name": "security",        "color": "e11d21", "description": "Security issue or hardening" },
+  { "name": "breaking-change", "color": "b60205", "description": "Changes behaviour that users, clients or other repos depend on" },
+  { "name": "blocked",         "color": "d93f0b", "description": "Waiting on another issue, a vendor or a decision — not actionable yet" },
+  { "name": "ai",              "color": "c5def5", "description": "Model behaviour, prompts, evals or AI provider integration" },
+  { "name": "devops",          "color": "aaaaaa", "description": "CI/CD, infrastructure, deployment, secrets, DNS" },
+  { "name": "dependencies",    "color": "0366d6", "description": "Pull requests that update a dependency file" },
+  { "name": "migration",       "color": "fbca04", "description": "Contains a database or data migration" },
+  { "name": "i18n",            "color": "0e8a16", "description": "Translation and localisation" },
+  { "name": "compliance",      "color": "5319e7", "description": "Legal, privacy, licensing or regulatory work" },
+  { "name": "housekeeping",    "color": "f9d0c4", "description": "Cleanup and maintenance with no behaviour change" }
+]
