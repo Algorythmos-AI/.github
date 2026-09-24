@@ -1,0 +1,21 @@
+name: Bug report
+description: Something isn't working as expected.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: "**Security issue?** Don't file it here. Use Security → Report a vulnerability instead."
+  - type: textarea
+    id: what
+    attributes: { label: What happened, description: What you saw and what you expected instead. }
+    validations: { required: true }
+  - type: textarea
+    id: steps
+    attributes: { label: Steps to reproduce, placeholder: "1. …\n2. …\n3. …" }
+    validations: { required: true }
+  - type: input
+    id: version
+    attributes: { label: Version, commit or environment, placeholder: "e.g. 1.3.8, iOS 26, Safari 19" }
+  - type: textarea
+    id: logs
+    attributes: { label: Logs or screenshots, description: Remove any personal data or secrets first., render: text }
