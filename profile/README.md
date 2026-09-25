@@ -10,7 +10,8 @@ Every line is verbatim, cited by Ang, and works offline.
 **AlgoMinutes** — an AI meeting recorder. Record on your phone, then read transcripts with
 speaker labels, structured minutes, decisions and action items on the web.
 
-**WASSUP platform** — the AI clinical-workflow platform behind WASSUP, built by Algorythmos.
+**WASSUP** — AI for the clinic front desk: a phone receptionist that answers and triages calls,
+meeting notes with action items, and call analytics. Built and operated by Algorythmos.
 
 **Agentic Armor** — in development.
 
